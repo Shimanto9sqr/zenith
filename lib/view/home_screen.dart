@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:zenith/providers/provider.dart';
 import 'package:zenith/viewmodel/home_view_model.dart';
 import 'package:zenith/model/weather_data.dart';
 import 'package:zenith/model/forecast.dart';
 import 'package:zenith/view/settings_screen.dart';
+import 'package:zenith/view/notification_history_screen.dart';
 
-/// Home screen displaying current weather and forecast
+
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -14,12 +16,53 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final weatherState = ref.watch(homeViewModelProvider);
     final viewModel = ref.read(homeViewModelProvider.notifier);
+    final notificationHistory = ref.watch(notificationHistoryProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather'),
         centerTitle: true,
         actions: [
+          Stack(
+            children: [
+              IconButton(
+                  icon: const Icon(Icons.history),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_)=>const NotificationHistoryScreen()
+                      ),
+                    );
+                  },
+                ),
+              if(notificationHistory.isNotEmpty)
+                Positioned(
+                  right: 8,
+                  top: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.error,
+                      shape: BoxShape.circle,
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    child: Text(
+                      notificationHistory.length>9?'9+' :notificationHistory.length.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+
+            ],
+          ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {

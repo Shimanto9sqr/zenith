@@ -30,7 +30,7 @@ void main() async {
 }
 
 Future<void> _initializeNotifications(FlutterLocalNotificationsPlugin plugin) async {
-  const androidSettings = AndroidInitializationSettings('assets/notify_icon.png');
+  const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const initSettings = InitializationSettings(
     android: androidSettings

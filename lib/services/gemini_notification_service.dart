@@ -3,20 +3,25 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:zenith/constants/api_constants.dart';
 import 'package:zenith/constants/app_constants.dart';
 import 'package:zenith/model/weather_data.dart';
+import 'package:zenith/repositories/notification_history_repo.dart';
 
 class GeminiNotificationService {
+
   final GenerativeModel _model;
   final FlutterLocalNotificationsPlugin _notificationsPlugin;
+  final NotificationHistoryRepository _historyRepository;
 
   GeminiNotificationService({
     GenerativeModel? model,
     FlutterLocalNotificationsPlugin? notificationsPlugin,
+    required NotificationHistoryRepository historyRepository,
   })  : _model = model ??
       GenerativeModel(
         model: ApiConstants.geminiModel,
         apiKey: ApiConstants.geminiApiKey,
       ),
-        _notificationsPlugin = notificationsPlugin ?? FlutterLocalNotificationsPlugin();
+        _notificationsPlugin = notificationsPlugin ?? FlutterLocalNotificationsPlugin(),
+        _historyRepository = historyRepository;
 
   static const String _systemPrompt = '''
 You are a helpful, slightly witty weather assistant named "Weather Buddy". Your job is to create engaging, personalized daily weather notification messages.
@@ -116,20 +121,18 @@ Wind Speed: ${current.windSpeed} m/s
       importance: Importance.high,
       priority: Priority.high,
       showWhen: true,
-      icon: 'assets/notify_icon.png',
-    );
-
-    const iosDetails = DarwinNotificationDetails(
-      presentAlert: true,
-      presentBadge: true,
-      presentSound: true,
+      icon: '@mipmap/ic_launcher',
     );
 
     const notificationDetails = NotificationDetails(
       android: androidDetails,
     );
 
-    // Pass the full message as payload for the notification detail screen
+    await _historyRepository.saveNotification(
+        title: title,
+        message: message,
+    );
+
     await _notificationsPlugin.show(
       id,
       title,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zenith/providers/provider.dart';
+import 'package:zenith/providers/settings_notifier.dart';
 import 'package:zenith/viewmodel/home_view_model.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
