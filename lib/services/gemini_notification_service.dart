@@ -22,7 +22,7 @@ class GeminiNotificationService {
 You are a helpful, slightly witty weather assistant named "Weather Buddy". Your job is to create engaging, personalized daily weather notification messages.
 
 Key Guidelines:
-- Keep messages concise (2-3 sentences max, under 100 words)
+- Keep messages concise (5-10 sentences max, under 200 words)
 - Be conversational and friendly, with a touch of humor when appropriate
 - Provide practical advice based on the weather conditions
 - Mention specific temperatures and conditions
@@ -41,7 +41,10 @@ Create ONE notification message based on the weather data provided.
 
   Future<String> generateNotificationMessage(WeatherData weatherData) async {
     try {
+      // Prepare weather context for Gemini
       final weatherContext = _buildWeatherContext(weatherData);
+
+      // Create the prompt with system instructions and weather data
       final prompt = '''
 $_systemPrompt
 
@@ -57,10 +60,12 @@ Generate a personalized weather notification message for today.
       if (response.text != null && response.text!.isNotEmpty) {
         return response.text!.trim();
       } else {
+        // Fallback message if Gemini fails
         return _buildFallbackMessage(weatherData);
       }
     } catch (e) {
       print('Error generating Gemini notification: $e');
+      // Return fallback message on error
       return _buildFallbackMessage(weatherData);
     }
   }
@@ -111,7 +116,7 @@ Wind Speed: ${current.windSpeed} m/s
       importance: Importance.high,
       priority: Priority.high,
       showWhen: true,
-      icon: '@mipmap/ic_launcher',
+      icon: 'assets/notify_icon.png',
     );
 
     const iosDetails = DarwinNotificationDetails(
@@ -122,14 +127,15 @@ Wind Speed: ${current.windSpeed} m/s
 
     const notificationDetails = NotificationDetails(
       android: androidDetails,
-      iOS: iosDetails,
     );
 
+    // Pass the full message as payload for the notification detail screen
     await _notificationsPlugin.show(
       id,
       title,
       message,
       notificationDetails,
+      payload: message,
     );
   }
 

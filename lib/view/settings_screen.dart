@@ -138,7 +138,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     OutlinedButton.icon(
                       onPressed: () => _sendTestNotification(context),
                       icon: const Icon(Icons.send),
-                      label: const Text('Send Test Notification'),
+                      label: const Text('Send Notification'),
                     ),
                   ],
                 ],
@@ -249,7 +249,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     try {
       final viewModel = ref.read(homeViewModelProvider.notifier);
       await viewModel.sendTestNotification();
-      _showSnackBar('Test notification sent! Check your notifications.');
+      _showSnackBar('Notification sent! Check your notifications.');
     } catch (e) {
       _showSnackBar('Failed to send notification: $e');
     }

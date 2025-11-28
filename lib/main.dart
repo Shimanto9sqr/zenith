@@ -8,6 +8,9 @@ import 'package:zenith/constants/app_constants.dart';
 import 'dart:io' show Platform;
 import 'package:zenith/providers/provider.dart';
 import 'package:zenith/view/home_screen.dart';
+import 'package:zenith/view/notification_detail_screen.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +30,7 @@ void main() async {
 }
 
 Future<void> _initializeNotifications(FlutterLocalNotificationsPlugin plugin) async {
-  const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+  const androidSettings = AndroidInitializationSettings('assets/notify_icon.png');
 
   const initSettings = InitializationSettings(
     android: androidSettings
@@ -35,6 +38,14 @@ Future<void> _initializeNotifications(FlutterLocalNotificationsPlugin plugin) as
   await plugin.initialize(
     initSettings,
     onDidReceiveNotificationResponse: (details) {
+      if(details.payload != null){
+        navigatorKey.currentState?.push(
+          MaterialPageRoute(builder: (_)=> NotificationDetailScreen(
+            message: details.payload!,
+           ),
+          ),
+        );
+      }
       print('Notification tapped: ${details.payload}');
     },
   );
@@ -74,6 +85,7 @@ class WeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
