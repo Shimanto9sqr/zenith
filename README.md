@@ -4,6 +4,7 @@
 A modern, responsive weather application built with Flutter, utilizing the **MVVM (Model-View-ViewModel)** architecture and integrated with external APIs for comprehensive weather data and engaging daily notifications via the **Gemini API**.
 
 ## App Demo
+https://github.com/user-attachments/assets/a7369dad-8381-4fff-a009-28f9c1cc977e
 
 ## Features
 
@@ -11,7 +12,7 @@ A modern, responsive weather application built with Flutter, utilizing the **MVV
 * **5-Day Forecast:** Detailed forecast view to help users plan ahead.
 * **MVVM Architecture:** Clean, scalable, and maintainable codebase structure using the MVVM pattern.
 * **Dual API Integration:**
-    * **Weather API:** Fetches and displays accurate meteorological information.
+    * **Weather API:** Fetches and displays accurate weather information.
     * **Gemini API:** Generates unique, contextual, customizable daily notification messages based on the current and forecasted weather (e.g., "Perfect day for a run! Expect sunshine until 5 PM.").
 * **State Management:** Utilizes **Riverpod** for efficient state handling.
 * **Modern UI:** Developed with a responsive **Material 3 (M3)** design.
