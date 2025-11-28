@@ -1,6 +1,7 @@
 # Zenith - Weather app but with AI
 
 A modern, responsive weather application built with Flutter, utilizing the **MVVM (Model-View-ViewModel)** architecture and integrated with external APIs for comprehensive weather data and engaging daily notifications via the **Gemini API**.
+<img width="96" height="96" alt="ic_launcher" src="https://github.com/user-attachments/assets/72436de7-8151-4d27-a4b6-c78d518a976c" />
 
 ## App Demo
 
