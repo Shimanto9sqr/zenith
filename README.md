@@ -24,7 +24,7 @@ The project is structured following the MVVM pattern for clear separation of con
 | **Model** | Data structures and business entities. | `lib/model/` |
 | **View** | UI components, screens, and user interaction. | `lib/view/` |
 | **ViewModel** | Business logic, state management, and interaction with the Repository. | `lib/viewmodel/` |
-| **Data** | API communication, data parsing, and storage logic. | `lib/data/services/`, `lib/data/repositories/` |
+| **Data** | API communication, data parsing, and storage logic. | `lib/services/`, `lib/repositories/` |
 
 ## Getting Started
 
