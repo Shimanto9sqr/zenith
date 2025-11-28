@@ -41,7 +41,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1.  **Clone the repository:**
     ```bash
-    git clone 'GIT_REPO'
+    git clone https://github.com/Shimanto9sqr/zenith.git
     cd zenith
     ```
 
