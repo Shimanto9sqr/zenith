@@ -73,20 +73,3 @@ These instructions will get you a copy of the project up and running on your loc
 | `google_generative_ai` | Integrating the Gemini API for engaging notifications. |
 | `flutter_local_notifications` | Scheduling and displaying daily, personalized messages. |
 | `shared_preferences` | Local storage for user settings (e.g., default city). |
-
-## Contributing
-
-Contributions are welcome! If you have suggestions, bug reports, or want to add a new feature, please feel free to open an issue or submit a pull request.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-[shimantosqr9@gmail.com]
